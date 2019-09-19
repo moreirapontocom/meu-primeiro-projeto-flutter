@@ -1,89 +1,64 @@
 import 'package:flutter/material.dart';
 
 void main() {
-
   runApp(MaterialApp(
-    title: "Hello World",
-    home: MyHomeStatefull()
+    title: "Frases do dia",
+    home: FrasesDoDia(),
   ));
-
 }
 
-class MyHomeStatefull extends StatefulWidget {
+class FrasesDoDia extends StatefulWidget {
   @override
-  _MyHomeStatefullState createState() => _MyHomeStatefullState();
+  _FrasesDoDiaState createState() => _FrasesDoDiaState();
 }
 
-class _MyHomeStatefullState extends State<MyHomeStatefull> {
+class _FrasesDoDiaState extends State<FrasesDoDia> {
 
-  var _nome = "World";
+  var _frase = "Clique no botão para gerar uma frase";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hello World"),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.green,
+        centerTitle: true,
+        title: Text("Frases do Dia"),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(20),
-        child: Row(
+      body: Container(
+        width: double.infinity, // 100% da largura da tela. Ou usar o widget Center(Container())
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text("Hello $_nome"),
+            Image.asset("images/logo.png"),
+            Text(
+              _frase,
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 25,
+                fontWeight: FontWeight.normal
+              ),
+            ),
             RaisedButton(
               onPressed: () {
                 setState(() {
-                  _nome = "Lucas";
+                  _frase = "Hello World";
+                  print("Clicou no botão");
                 });
               },
-              child: Text("Clique aqui"),
+              color: Colors.green,
+              child: Text(
+                "Nova Frase",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
             )
           ],
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.amberAccent,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text("1"),
-              Text("2"),
-              Text("3"),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-class MyHomeStatless extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Hello World"),
-        backgroundColor: Colors.amber,
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(20),
-        child: Text("Conteúdo principal stateless"),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.amberAccent,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text("1"),
-              Text("2"),
-              Text("3"),
-            ],
-          ),
         ),
       ),
     );
