@@ -1,3 +1,6 @@
+import 'dart:ffi';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +17,24 @@ class FrasesDoDia extends StatefulWidget {
 
 class _FrasesDoDiaState extends State<FrasesDoDia> {
 
-  var _frase = "Clique no botão para gerar uma frase";
+  var _fraseAtual = "Clique no botão para gerar uma frase";
+
+  List<String> _frases = [
+    "Frase 1",
+    "Segunda frase",
+    "Minha terceira frase"
+  ];
+
+  void _gerarFrase() {
+
+    int _numeroAleatorio = Random().nextInt( _frases.length );
+
+    setState(() {
+      print("Clicou no botão");
+      _fraseAtual = _frases[_numeroAleatorio];
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +53,7 @@ class _FrasesDoDiaState extends State<FrasesDoDia> {
           children: <Widget>[
             Image.asset("images/logo.png"),
             Text(
-              _frase,
+              _fraseAtual,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 color: Colors.black,
@@ -42,12 +62,7 @@ class _FrasesDoDiaState extends State<FrasesDoDia> {
               ),
             ),
             RaisedButton(
-              onPressed: () {
-                setState(() {
-                  _frase = "Hello World";
-                  print("Clicou no botão");
-                });
-              },
+              onPressed: _gerarFrase,
               color: Colors.green,
               child: Text(
                 "Nova Frase",
